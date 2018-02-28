@@ -1,0 +1,33 @@
+buildscript {
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+
+group = 'com.grs.online'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	compile('org.springframework.boot:spring-boot-starter-web:'+ springBootVersion)
+	compile('org.springframework.cloud:spring-cloud-starter-aws:'+ springCloudStarterVersion)
+	compile('org.springframework.cloud:spring-cloud-starter-aws-messaging:'+ springCloudStarterVersion)
+	testCompile('org.springframework.boot:spring-boot-starter-test:'+ springBootVersion)
+}
+
+dependencyManagement {
+	imports {
+		mavenBom "org.springframework.cloud:spring-cloud-dependencies:"+ springCloudStarterVersion
+	}
+}
